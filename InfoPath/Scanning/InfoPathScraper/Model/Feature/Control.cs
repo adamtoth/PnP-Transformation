@@ -36,6 +36,12 @@ namespace InfoPathScraper.Model.Feature
 				{
 					counter.IncrementKey(xctAttribute.Value);
 				}
+                // Added check for Page Breaks (indicates printing intent)
+                XAttribute xClassAttribute = element.Attribute("class");
+                if (xClassAttribute != null && xClassAttribute.Value == "xdPageBreak")
+                {
+                    counter.IncrementKey("PageBreak");
+                }
 			}
 
 			// then create Control objects for each control
